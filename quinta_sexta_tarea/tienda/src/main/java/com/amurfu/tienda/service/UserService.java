@@ -70,4 +70,18 @@ public class UserService implements IUserService {
         response.setMessage("Se consultaron todos los usuarios correctamente");
         return response;
     }
+    @Override
+    public Response<UserDTO> getUserById(Integer idUser){
+        Response<UserDTO> response = new Response<>();
+        Optional<User> user = userRepository.findById(idUser);
+        if(user.isEmpty()){
+            throw new BusinessException(HttpStatus.NOT_FOUND,"El usuario no existe");
+        }
+        UserDTO userDTO = userHelper.convertToDtoUser(user.get());
+        response.setData(userDTO);
+        response.setMessage("La consulta por usuario se hizo correctamente");
+        return response;
+
+    }
+
 }

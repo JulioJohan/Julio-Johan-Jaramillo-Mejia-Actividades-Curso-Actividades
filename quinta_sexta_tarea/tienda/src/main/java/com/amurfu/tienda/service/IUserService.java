@@ -10,4 +10,6 @@ public interface IUserService {
     Response<UserDTO> saveUser(UserDTO userDTO);
 
     Response<UserDTO> getAllUser();
+
+    Response<UserDTO> getUserById(Integer idUser);
 }

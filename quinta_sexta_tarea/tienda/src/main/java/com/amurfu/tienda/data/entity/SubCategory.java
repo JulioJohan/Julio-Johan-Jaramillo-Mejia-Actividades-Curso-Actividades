@@ -26,7 +26,7 @@ public class SubCategory {
     @JoinColumn(name = "id_category")
     private Category category;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "subCategory")
     @JsonBackReference
     private List<Product> product;
 }

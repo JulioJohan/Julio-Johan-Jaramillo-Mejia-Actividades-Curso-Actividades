@@ -31,4 +31,10 @@ public class UserController {
         return new ResponseEntity<>(userDTO,HttpStatus.OK);
     }
 
+    @GetMapping(value = "/get_user/{idUser}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response<UserDTO>> getUserById(@PathVariable("idUser") Integer idUser ){
+        Response<UserDTO> response = userService.getUserById(idUser);
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
 }
