@@ -1,9 +1,12 @@
 package com.amurfu.tienda.data.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +25,8 @@ public class SubCategory {
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
+
+    @OneToMany(mappedBy = "subCategory")
+    @JsonBackReference
+    private List<Product> products;
 }

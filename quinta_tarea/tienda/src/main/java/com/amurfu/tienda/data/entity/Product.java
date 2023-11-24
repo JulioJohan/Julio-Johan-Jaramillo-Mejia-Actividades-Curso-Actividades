@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.naming.Name;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +22,7 @@ public class Product {
     @Column(name = "name_product",nullable = false,length = 200)
     private String nameProduct;
 
-    @Column(name = "description",nullable = false,length = 500)
+    @Column(name = "description",nullable = false,length = 5000)
     private String description;
 
     @Column(name = "serial",nullable = false,length = 100,unique = true)
@@ -41,9 +40,13 @@ public class Product {
     @Column(name = "created_at",nullable = false)
     private Date createdAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "id_category",nullable = false)
     private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
+    @JoinColumn(name = "id_sub_category",nullable = false)
+    private SubCategory subCategory;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_shopping_cart",nullable = true)

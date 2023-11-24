@@ -19,13 +19,13 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_shopping_cart",nullable = false)
-    private Integer idShoppingCarty;
+    private Integer idShoppingCart;
 
     @Column(name = "subtotal",nullable = false)
     private BigDecimal subtotal;
 
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_user",nullable = false)
     private User user;
 

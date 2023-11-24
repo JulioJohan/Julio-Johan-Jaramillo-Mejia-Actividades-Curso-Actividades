@@ -12,21 +12,21 @@ import java.math.BigDecimal;
 @Table(name = "transaction_product")
 public class TransactionProduct {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_transaction_prodcut")
-    private Integer idTransactionProduct;
+    @EmbeddedId
+    private TransactionProductId idTransactionProductId;
 
-    @Column(name = "cantidad",nullable = false)
-    private Integer cantidad;
+    @Column(name = "quantity",nullable = false)
+    private Integer quantity;
 
-    @Column(name = "precio_unitario",nullable = false)
-    private BigDecimal precioUnitario;
+    @Column(name = "total",nullable = false)
+    private BigDecimal total;
 
+    @MapsId("idTransaction")
     @ManyToOne
     @JoinColumn(name = "id_transaction",nullable = false)
     private Transaction transaction;
 
+    @MapsId("idProduct")
     @ManyToOne
     @JoinColumn(name = "id_product",nullable = false)
     private Product product;

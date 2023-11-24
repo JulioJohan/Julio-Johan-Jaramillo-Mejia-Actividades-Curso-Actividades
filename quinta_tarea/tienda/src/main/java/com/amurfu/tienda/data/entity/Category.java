@@ -22,12 +22,11 @@ public class Category {
     private String nameCategory;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.REMOVE)
+    @JsonBackReference
     private List<SubCategory> subCategories;
 
     @OneToMany(mappedBy = "category")
     @JsonBackReference
     private List<Product> product;
-
-
 
 }

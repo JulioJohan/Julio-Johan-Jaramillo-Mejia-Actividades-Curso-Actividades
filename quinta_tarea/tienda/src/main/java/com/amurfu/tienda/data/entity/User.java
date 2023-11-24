@@ -3,6 +3,7 @@ package com.amurfu.tienda.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +24,7 @@ public class User {
     @Column(name = "first_name",length = 100,nullable = false)
     private String firstName;
 
-    @Column(name = "middle_name",length = 100,nullable = false)
+    @Column(name = "middle_name",length = 100,nullable = true)
     private String middleName;
 
     @Column(name = "last_name",length = 100,nullable = false)
@@ -38,10 +39,7 @@ public class User {
     @Column(name = "password",length = 255,nullable = false)
     private String password;
 
-    @Column(name = "role", length = 10,nullable = false)
-    private String role;
-
-    @Column(name = "phone",length = 10,nullable = true)
+    @Column(name = "phone",length = 10,nullable = true,unique = true)
     private Long phone;
 
     @Column(name = "avatar",length = 1000,nullable = true)
