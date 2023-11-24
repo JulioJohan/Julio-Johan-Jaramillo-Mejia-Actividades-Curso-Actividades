@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,13 +28,16 @@ public class Transaction {
     @Column(name = "amount",nullable = false)
     private BigDecimal total;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "id_user")
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name = "id_form_payment")
     private FormPayment formPayment;
+
+    @OneToMany(mappedBy = "transaction",cascade = CascadeType.ALL)
+    private List<TransactionProduct> transactionProducts;
 
     @PrePersist
     private void dateTransactionPre(){
